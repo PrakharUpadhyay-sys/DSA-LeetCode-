@@ -1,18 +1,23 @@
-class Solution {
-    public int[][] flipAndInvertImage(int[][] image) {
-        for(int i=0;i<image.length;i++)
-        {
-            image[i]=negation(image[i]);
+public class Solution {
+
+    public static int[][] flipAndInvertImage(int[][] image) {
+        int n = image.length;
+
+        for (int[] row : image) {
+            int left = 0;
+            int right = n - 1;
+
+            while (left <= right) {
+                if (row[left] == row[right]) {
+                    int temp = row[left] ^ 1;
+                    row[left] = row[right] ^ 1;
+                    row[right] = temp;
+                }
+                left++;
+                right--;
+            }
         }
+
         return image;
-    }
-    static int[] negation(int[] arr)
-    {
-       int[] num = new int[arr.length];
-       for(int i =0;i<arr.length;i++)
-       {
-        num[arr.length-1-i]=(arr[i]^1);
-       }
-       return num;
     }
 }
